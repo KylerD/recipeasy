@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import { CheckCircleIcon, ComputerDesktopIcon, LinkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-import Image from 'next/image'
+import { LandingPageTile } from '@/components/LandingPageTile'
+
 
 export default function Home() {
   return (
@@ -16,8 +17,8 @@ export default function Home() {
       <main>
         <div className="from-primary to-secondary text-primary-content -mt-[4rem] grid place-items-center items-end bg-gradient-to-br pt-20">
           <div className="hero-content col-start-1 row-start-1 w-full max-w-7xl flex-col justify-between gap-10 pb-40 lg:flex-row lg:items-end lg:gap-0 xl:gap-20">
-            <div className="lg:pl-10 lg:pb-32">
-              <div className="mb-2 py-4 text-center lg:py-10 lg:text-left">
+            <div className="lg:pl-10 lg:pb-24">
+              <div className="mb-2 py-4 text-center lg:py-4 lg:text-left">
                 <h1 className="font-title mb-2 text-4xl font-extrabold sm:text-5xl lg:text-6xl ">
                   Recipeasy 🍔
                 </h1>
@@ -25,12 +26,32 @@ export default function Home() {
                   The AI-Powered Recipe Builder for Home Cooks and Food Enthusiasts
                 </h2>
               </div>
-              <p>
+
+              <div className="my-2 flex max-w-sm flex-col gap-2 text-left">
+                <div className="flex gap-2">
+                  <CheckCircleIcon className="h-6 w-6" />
+                  AI-Powered Recipe Creation
+                </div>
+                <div className="flex gap-2">
+                  <CheckCircleIcon className="h-6 w-6" />
+                  Personalized Recommendations
+                </div>
+                <div className="flex gap-2">
+                  <CheckCircleIcon className="h-6 w-6" />
+                  Ingredient Substitutions
+                </div>
+                <div className="flex gap-2">
+                  <CheckCircleIcon className="h-6 w-6" />
+                  Dietary Accommodations
+                </div>
+              </div>
+
+              <p className='mt-4'>
                 Discover the joy of cooking with Recipeasy, your personal AI-powered recipe builder. Say goodbye to recipe block and explore a world of culinary creativity tailored to your unique tastes and preferences.
               </p>
 
               <div className="mt-4 flex flex-1 justify-center space-x-2 lg:mt-6 lg:justify-start">
-                <Link href="/docs/install" className='btn  btn-active lg:btn-lg normal-case'>
+                <Link href="/recipe" className='btn  btn-active lg:btn-lg normal-case'>
                   Get Started with Recipeasy
                 </Link>
 
@@ -42,8 +63,8 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="bg-base-200 flex flex-col items-center gap-20 py-20">
-          <div className="text-base-content glass xl:rounded-box -mt-48 max-w-screen-xl gap-4 bg-opacity-60 xl:pb-0 flex flex-col">
+        <div className="bg-base-200 flex flex-col items-center gap-20 py-20 md:mx-4">
+          <div className="flex flex-col w-full items-center text-base-content glass xl:rounded-box -mt-48 sm:max-w-screen-xl gap-4 bg-opacity-60 pb-4">
             <div className="px-2 pt-2">
               <div className="navbar text-primary-content rounded-box space-x-1">
                 <div className="mx-2 flex-1 justify-center px-2 md:flex md:justify-start">
@@ -52,42 +73,30 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 p-4">
-              <div className="card w-64 sm:w-80 bg-base-100 shadow-xl">
-                <figure>
-                  <img src="/images/pantry.png" alt="Personalized Recommendations" />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title">Personalized Recommendations</h2>
-                  <p>
-                    Discover new and delicious recipes curated just for you, based on your favorite ingredients, and desired meal types.
-                  </p>
-                </div>
-              </div>
+            <div className="
+            flex flex-col w-full px-4 justify-center items-center
+            sm:flex-row sm:flex-wrap sm:items-stretch
+            md:flex-wrap
+            lg:flex-nowrap">
+              <LandingPageTile
+                title="Personalized Recommendations"
+                description="Discover new and delicious recipes curated just for you, based on your favorite ingredients, and desired meal types."
+                image="/images/steak.png" />
 
-              <div className="card w-64 sm:w-80 bg-base-100 shadow-xl">
-                <figure>
-                  <img src="/images/bread.png" alt="Dietary Accommodations" />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title">Dietary Accommodations</h2>
-                  <p>
-                    From gluten-free to vegan, Recipeasy makes it easy to find recipes that cater to your specific dietary needs.
-                  </p>
-                </div>
-              </div>
+              <LandingPageTile
+                title="Ingredient Substitutions"
+                description="Not sure what to do with what's in your pantry? Recipeasy can help you make the most of your ingredients by suggesting creative substitutions and alternatives."
+                image="/images/pantry.png" />
 
-              <div className="card w-64 sm:w-80 bg-base-100 shadow-xl">
-                <figure>
-                  <img src="/images/fish.png" alt="Pairing" />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title">Beverage Pairing</h2>
-                  <p>
-                    Elevate your dining experience with Recipeasy's intelligent drink pairing suggestions. Our AI not only crafts delicious recipes but also recommends the perfect beverage to complement your meal
-                  </p>
-                </div>
-              </div>
+              <LandingPageTile
+                title="Dietary Accommodations"
+                description="Recipeasy can help you find recipes that fit your dietary needs, whether you're looking for a vegan, vegetarian, or gluten-free meal."
+                image="/images/bread.png" />
+
+              <LandingPageTile
+                title="Beverage Pairing"
+                description="Elevate your dining experience with Recipeasy's intelligent drink pairing suggestions. Our AI not only crafts delicious recipes but also recommends the perfect beverage to complement your meal."
+                image="/images/fish.png" />
 
             </div>
           </div>
