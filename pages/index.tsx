@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { CheckCircleIcon, ComputerDesktopIcon, LinkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { LandingPageTile } from '@/components/LandingPageTile'
+import { Footer } from '@/components/Footer'
 
 
 export default function Home() {
@@ -11,7 +12,14 @@ export default function Home() {
         <title>Recipeasy</title>
         <meta name="description" content="Quick Recipes For Everything" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="og:image" content="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
       </Head>
 
       <main>
@@ -102,18 +110,7 @@ export default function Home() {
           </div>
         </div>
 
-        <footer className="footer p-10 bg-neutral text-neutral-content flex w-full justify-center">
-          <div className='flex flex-col'>
-            <div className='flex flex-row space-x-4'>
-              <ComputerDesktopIcon className='h-6 w-6' />
-              <p>Built by Kyle Davidson</p>
-            </div>
-            <div className='flex flex-row space-x-4'>
-              <LinkIcon className='h-6 w-6' />
-              <a href="https://kyled.wtf">Website</a>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </main >
     </>
   )
