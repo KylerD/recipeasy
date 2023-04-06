@@ -3,10 +3,6 @@ import { ChatMessage } from '@/models/chatMessage';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Configuration, OpenAIApi } from 'openai';
 
-export const config = {
-  runtime: "edge",
-};
-
 type RecipeData = {
   meal: string
   quantity: string
