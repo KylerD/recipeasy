@@ -1,15 +1,6 @@
-import { RecipeResponse } from "@/models/recipeResponse"
 import { ClockIcon, HeartIcon, StarIcon, UserIcon } from "@heroicons/react/24/outline"
 
-export function RecipePlan(
-  {
-    generatedRecipe,
-    clearGeneratedRecipe
-  }: {
-    generatedRecipe: RecipeResponse,
-    clearGeneratedRecipe: () => void
-  }) {
-
+export function RecipePlanLoading() {
   return (
     <div className="flex flex-col
             w-full h-full 
@@ -26,8 +17,10 @@ export function RecipePlan(
               <HeartIcon className='w-8 h-8' />
             </div>
           </div>
-          <div className="stat-value text-primary uppercase whitespace-normal my-auto">
-            {generatedRecipe.recipe}
+          <div className="stat-value text-primary uppercase whitespace-normal my-auto animate-pulse">
+            <div className="h-2 bg-primary rounded-full max-w-md my-2.5"></div>
+            <div className="h-2 bg-primary rounded-full max-w-sm my-2.5"></div>
+            <div className="h-2 bg-primary rounded-full max-w-xs my-2.5"></div>
           </div>
         </div>
 
@@ -39,31 +32,31 @@ export function RecipePlan(
             </div>
           </div>
           <div className="stat-value text-secondary uppercase whitespace-normal my-auto">
-            {generatedRecipe.difficulty}
+            <div className="h-2 bg-secondary rounded-full max-w-sm mb-2.5  animate-pulse"></div>
           </div>
         </div>
 
         <div className="stat flex flex-col w-full lg:w-2/12">
           <div className="flex flex-row items-center justify-between">
             <div className="stat-title uppercase">Time</div>
-            <div className="stat-figure text-secondary">
+            <div className="stat-figure text-primary">
               <ClockIcon className='w-8 h-8' />
             </div>
           </div>
           <div className="stat-value text-secondary uppercase whitespace-normal my-auto break-word">
-            {generatedRecipe.time}
+            <div className="h-2 bg-primary rounded-full max-w-sm mb-2.5  animate-pulse"></div>
           </div>
         </div>
 
         <div className="stat flex flex-col w-full lg:w-2/12">
           <div className="flex flex-row items-center justify-between">
             <div className="stat-title uppercase">Serves</div>
-            <div className="stat-figure text-secondary">
+            <div className="stat-figure text-accent">
               <UserIcon className='w-8 h-8' />
             </div>
           </div>
           <div className="stat-value text-secondary uppercase whitespace-normal my-auto">
-            {generatedRecipe.quantity}
+            <div className="h-2 bg-accent rounded-full max-w-sm mb-2.5  animate-pulse"></div>
           </div>
         </div>
 
@@ -75,11 +68,9 @@ export function RecipePlan(
             <h2 className="card-title text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
               Ingredients
             </h2>
-            {generatedRecipe && generatedRecipe.ingredients.map((ingredient: string, idx: number) => {
-              return <p key={idx} className='text-lg'>
-                {ingredient}
-              </p>
-            })}
+            <div className="h-2 bg-secondary rounded-full max-w-sm mb-2.5 animate-pulse"></div>
+            <div className="h-2 bg-secondary rounded-full max-w-sm mb-2.5 animate-pulse"></div>
+            <div className="h-2 bg-secondary rounded-full max-w-sm mb-2.5 animate-pulse"></div>
           </div>
         </div>
 
@@ -88,18 +79,18 @@ export function RecipePlan(
             <h2 className="card-title text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
               Method
             </h2>
-            {generatedRecipe && generatedRecipe.instructions.map((instruction: string, idx: number) => {
-              return <p key={idx} className='text-lg'>
-                {instruction}
-              </p>
-            })}
+            <div className="h-2 bg-secondary rounded-full max-w-xl mb-2.5 animate-pulse"></div>
+            <div className="h-2 bg-secondary rounded-full max-w-lg mb-2.5 animate-pulse"></div>
+            <div className="h-2 bg-secondary rounded-full max-w-md mb-2.5 animate-pulse"></div>
           </div>
         </div>
       </div>
 
-      <button
-        onClick={() => clearGeneratedRecipe()}
-        className="btn btn-primary mt-4 lg:text-lg" >New Recipe</button>
+      <p className="text-xl mx-auto mt-4 font-semibold flex items-center">
+        Chef is thinking
+        <span className="loading loading-dots loading-xl ml-2">
+        </span>
+      </p>
     </div >
   )
 }

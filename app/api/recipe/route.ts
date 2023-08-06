@@ -1,30 +1,21 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { ChatMessage } from '@/models/chatMessage';
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextResponse } from 'next/server';
 import { Configuration, OpenAIApi } from 'openai';
 
-type RecipeData = {
-  meal: string
-  quantity: string
-  isVegan: boolean
-  isVegetarian: boolean
-  isGlutenFree: boolean
-  isDairyFree: boolean
-  isNutFree: boolean
-  isKosher: boolean
-}
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  const { method } = req;
-
-  if (method !== "POST") {
-    return res.status(400);
+export async function POST(request: Request) {
+  type RecipeData = {
+    meal: string
+    quantity: string
+    isVegan: boolean
+    isVegetarian: boolean
+    isGlutenFree: boolean
+    isDairyFree: boolean
+    isNutFree: boolean
+    isKosher: boolean
   }
 
-  const recipeData: RecipeData = req.body
+  const recipeData: RecipeData = await request.json();
   let cookingInstructions = [];
 
   if (recipeData.isVegan) {
@@ -89,12 +80,12 @@ export default async function handler(
       output.replaceAll("\n", "").replaceAll("\\", "");
 
       const parsedOutput = JSON.parse(output);
-      return res.status(200).json(parsedOutput);
+      return NextResponse.json(parsedOutput, { status: 200 })
     } catch (err) {
       console.log(err);
-      return res.status(500).end();
+      return NextResponse.json({}, { status: 500 })
     }
   }
 
-  return res.status(200).end();
+  return NextResponse.json({}, { status: 200 })
 }
