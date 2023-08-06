@@ -5,8 +5,7 @@ import { Configuration, OpenAIApi } from 'openai';
 
 
 export async function POST(request: Request) {
-  type RecipeData = {
-    meal: string
+  type RecommendRecipeData = {
     quantity: string
     isVegan: boolean
     isVegetarian: boolean
@@ -16,7 +15,7 @@ export async function POST(request: Request) {
     isKosher: boolean
   }
 
-  const recipeData: RecipeData = await request.json();
+  const recipeData: RecommendRecipeData = await request.json();
   let cookingInstructions = [];
 
   if (recipeData.isVegan) {
@@ -51,7 +50,7 @@ export async function POST(request: Request) {
 
   const openai = new OpenAIApi(configuration);
 
-  let systemPrompt = `Generate a recipe with cooking instructions for ${recipeData.meal}. The recipe should cater for ${recipeData.quantity} people. The recipe should use UK measurements. `
+  let systemPrompt = `Generate a recipe with cooking instructions for a meal of your choice. The recipe should cater for ${recipeData.quantity} people. The recipe should use UK measurements. `
 
   if (cookingInstructions.length > 0) {
     systemPrompt += `The recipe should cater for the following dietary requirements: ${dietaryRequirements}. `
@@ -64,12 +63,14 @@ export async function POST(request: Request) {
     "difficulty: 'easy, medium or hard', " +
     "quantity: 'number of people', " +
     "time: 'number of minutes'} " +
-    "Do not return any other information."
+    "Do not return any other information. "
 
   const message: ChatMessage[] = [{
     role: 'system',
     content: systemPrompt
   }]
+
+  console.log(message);
 
   const chatGPT = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',

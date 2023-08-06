@@ -86,7 +86,7 @@ export function RecipePlanLoading() {
         </div>
       </div>
 
-      <p className="text-xl mx-auto mt-4 font-semibold flex items-center">
+      <p className="text-xl mx-auto mt-4 font-semibold flex items-center text-primary">
         Chef is thinking
         <span className="loading loading-dots loading-xl ml-2">
         </span>

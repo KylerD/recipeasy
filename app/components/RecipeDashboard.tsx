@@ -54,6 +54,47 @@ export function RecipeDashboard() {
     }
   }
 
+  const recommendRecipe = async (e: any) => {
+    e.preventDefault();
+
+    setGeneratingRecipe(true);
+    setSomethingWentWrong(false);
+    setGeneratedRecipe(undefined);
+
+    const quantity = (document.getElementById('quantity') as HTMLInputElement).value;
+    const isVegan = (document.getElementById('vegan') as HTMLInputElement).checked;
+    const isVegetarian = (document.getElementById('vegetarian') as HTMLInputElement).checked;
+    const isGlutenFree = (document.getElementById('gluten-free') as HTMLInputElement).checked;
+    const isDairyFree = (document.getElementById('dairy-free') as HTMLInputElement).checked;
+    const isNutFree = (document.getElementById('nut-free') as HTMLInputElement).checked;
+    const isKosher = (document.getElementById('kosher') as HTMLInputElement).checked;
+
+    const recipeResp = await fetch('/api/recipe/recommend', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        quantity,
+        isVegan,
+        isVegetarian,
+        isGlutenFree,
+        isDairyFree,
+        isNutFree,
+        isKosher
+      })
+    });
+
+    setGeneratingRecipe(false);
+
+    if (recipeResp.ok) {
+      const recipe = await recipeResp.json();
+      setGeneratedRecipe(recipe);
+    } else {
+      setSomethingWentWrong(true);
+    }
+  }
+
   const clearGeneratedRecipe = () => {
     setGeneratedRecipe(undefined);
   }
@@ -73,6 +114,7 @@ export function RecipeDashboard() {
         {!generatingRecipe && !generatedRecipe &&
           <RecipeBuilder
             generateRecipe={generateRecipe}
+            recommendRecipe={recommendRecipe}
             somethingWentWrong={somethingWentWrong}
             setSomethingWentWrong={setSomethingWentWrong}
           />

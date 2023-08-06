@@ -3,12 +3,14 @@ import { DietaryRequirement } from "./DietaryRequirement"
 
 export function RecipeBuilder({
   generateRecipe,
+  recommendRecipe,
   somethingWentWrong,
   setSomethingWentWrong
 }: {
+  generateRecipe: (e: any) => Promise<void>,
+  recommendRecipe: (e: any) => Promise<void>
   somethingWentWrong: boolean,
-  setSomethingWentWrong: (somethingWentWrong: boolean) => void,
-  generateRecipe: (e: any) => Promise<void>
+  setSomethingWentWrong: (somethingWentWrong: boolean) => void
 }) {
   return (
     <div className="
@@ -18,12 +20,10 @@ export function RecipeBuilder({
       max-w-screen-sm lg:max-w-screen-xl mb-4">
       {somethingWentWrong &&
         <button
-          className="alert alert-error shadow-lg my-4 flex items-center justify-center max-w-lg"
+          className="alert alert-error shadow-lg my-4 flex flex-row items-center justify-center max-w-lg"
           onClick={() => setSomethingWentWrong(false)} >
-          <div>
-            <XCircleIcon className='w-6 h-6' />
-            <span>Error! Could not generate recipe</span>
-          </div>
+          <XCircleIcon className='w-6 h-6' />
+          <span>Whoops! Could not generate recipe</span>
         </button>
       }
 
@@ -90,11 +90,20 @@ export function RecipeBuilder({
             <DietaryRequirement title="Kosher" />
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary my-8 w-full">
-            Generate Recipe
-          </button>
+          <div className="flex flex-col my-8 w-full">
+            <button
+              type="submit"
+              className="btn btn-primary w-full">
+              Generate Recipe
+            </button>
+
+            <button
+              type="button"
+              onClick={recommendRecipe}
+              className="btn btn-secondary w-full mt-2">
+              Recommend Something!
+            </button>
+          </div>
         </form>
       </div>
     </div>
