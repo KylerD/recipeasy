@@ -1,6 +1,7 @@
 import { RecipeResponse } from "@/models/recipeResponse"
 import { ClockIcon, HeartIcon, StarIcon, UserIcon } from "@heroicons/react/24/outline"
 
+
 export function RecipePlan(
   {
     generatedRecipe,
