@@ -7,9 +7,21 @@ import { Footer } from './components/Footer';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Recipeasy',
-  description: 'Easy food recipes for everything',
+  title: 'Recipeasy: AI-Powered Recipe Generator - Create Easy, Delicious Meals',
+  description: 'Unleash your inner chef with Recipeasy, the AI-powered recipe generator. Create quick, delicious meals tailored to your preferences and dietary needs. Try it now!',
+  keywords: [
+    'AI recipe generator',
+    'Recipeasy',
+    'quick meals',
+    'easy recipes',
+    'dietary restrictions',
+    'customizable recipes',
+    'artificial intelligence',
+    'cooking',
+    'food'
+  ]
 }
+
 
 export default function RootLayout({
   children,
